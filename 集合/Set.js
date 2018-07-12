@@ -51,6 +51,80 @@
         this.values = function () {
             return Object.keys(items)
         }
+
+
+
+    //集合操作 
+        // 并集：对于给定的两个集合，返回一个包含两个集合中所有元素的集合
+
+        this.union = function(otherSet){
+            // 创建一个新的集合，代表新产生的并集
+            var unionSet = new Set();
+            // 获取第一个集合(即当前的Set实例)的所有值
+
+            // 因为集合中的元素不会重复。add方法会判断是否有相同值而选择添加
+            var values = this.values();
+            for(var i =0 ; i<values.length;i++){
+                unionSet.add(values[i])
+            }
+            values = otherSet.values();
+            for(var i = 0;i<values.length;i++){
+                unionSet.add(values[i])
+            }
+            return unionSet;
+        }
+
+        // 交集：对于给定的两个集合，返回一个包含两个集合中共有元素的集合
+
+        this.intersection = function(otherSet){
+            // 实例一个集合 用于存两个集合交集的值
+            var intersectionSet = new Set();
+
+            var values = this.values();
+
+            for(var i = 0 ; i<values.length ; i++){
+                // 便利第一个集合所有的元素，如果在第二个集合中有的元素则添加到intersectionSet集合中
+                if(otherSet.has(values[i])){
+                    intersectionSet.add(values[i])
+                }
+            }
+            return intersectionSet
+        }
+
+        // 差集：对于给定的两个集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的元素的新集合
+
+        this.difference =function(otherSet){
+            // 实例一个集合，用来存两个集合差集的元素
+            var differenceSet = new Set();
+
+            var values = this.values;
+
+            for(var i =0; i<values.length ; i++){
+                // 便利第一个集合所有的元素，如果在第二个集合中没有的元素则添加到differenceSet集合中
+                if(!otherSet.has(values[i])){
+                    differenceSet.add(values[i])
+                }
+            }
+            return differenceSet
+        }
+
+        // 子集：验证一个给定集合是否是另一个集合的子集
+
+        this.subset = function(otherSet){
+            if(this.size()>otherSet.size()){
+                return false
+            }else{
+                var values = this.values();
+                for(var i=0;i<values.length;i++){
+                    if(!otherSet.has(values[i])){
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+
+        
     }
 
     var set = new Set();
@@ -72,3 +146,23 @@
     console.log(set.values()) // []
 
 
+
+
+    var setA = new Set();
+    setA.add(1);
+    setA.add(2);
+
+    var setB = new Set();
+    setB.add(1);
+    setB.add(2);
+    setB.add(3);
+
+    var setC = new Set();
+    setC.add(2);
+    setC.add(3);
+    setC.add(4);
+
+    console.log(setA.subset(setB))  // true
+    console.log(setA.subset(setC))  // false
+
+    
