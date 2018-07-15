@@ -3,7 +3,7 @@
 // 在字典中，存储的是[键,值]对[key,value]，其中键名是用来查询特定元素的。字典和集合很相似。字典也被称作 '映射'
 
     // 创建一个字典
-    function Dictionary(){
+  function Dictionary(){
         var items = {}
 
 
@@ -70,6 +70,8 @@
     dictionary.set('Gandalf','gandalf@qq.com')
     dictionary.set('Gandalf1','gandalf1@qq.com')
     dictionary.set('Gandalf2','gandalf2@qq.com')
-    console.log(dictionary.keys())
-    console.log(dictionary.values())
-    console.log(dictionary.getItems())
+    // console.log(dictionary.keys())
+    // console.log(dictionary.values())
+    // console.log(dictionary.getItems())
+
+module.exports = Dictionary
